@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.rodrigo.barbosa.curso.springboot.mongodb.dominio.Usuario;
+import com.rodrigo.barbosa.curso.springboot.mongodb.dto.UsuarioDTO;
 import com.rodrigo.barbosa.curso.springboot.mongodb.repositorio.RepositorioUsuario;
 import com.rodrigo.barbosa.curso.springboot.mongodb.servicos.exception.ObjectNotFoundException;
 
@@ -23,5 +24,13 @@ public class ServicoUsuario {
 	public Usuario buscarPorId(String id) {
 		Optional<Usuario> usuario = repositorioUsuario.findById(id);
 		return usuario.orElseThrow(() -> new ObjectNotFoundException("Objeto não encontrado"));
+	}
+	
+	public Usuario inserir(Usuario usuario) {
+		return repositorioUsuario.insert(usuario);
+	}
+	
+	public Usuario fromDTO(UsuarioDTO usuarioDTO) {
+		return new Usuario(usuarioDTO.getId(), usuarioDTO.getNome(), usuarioDTO.getEmail());
 	}
 }
