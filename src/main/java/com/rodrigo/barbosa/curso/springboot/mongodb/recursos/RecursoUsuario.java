@@ -48,4 +48,11 @@ public class RecursoUsuario {
 		
 		return ResponseEntity.created(objUri).build();
 	}
+	
+	@RequestMapping(value="/{id}", method = RequestMethod.DELETE)
+	public ResponseEntity<Void> excluir(@PathVariable String id){
+		servicoUsuario.excluir(id);
+		
+		return ResponseEntity.noContent().build();
+	}
 }
