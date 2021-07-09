@@ -6,25 +6,25 @@ import java.util.Date;
 public class ComentarioDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
-	private String texto;
+	private String mensagem;
 	private Date data;
 	private AutorDTO autor;
 	
 	public ComentarioDTO() {
 	}
 
-	public ComentarioDTO(String texto, Date data, AutorDTO autor) {
-		this.texto = texto;
+	public ComentarioDTO(String mensagem, Date data, AutorDTO autor) {
+		this.mensagem = mensagem;
 		this.data = data;
 		this.autor = autor;
 	}
 
 	public String getTexto() {
-		return texto;
+		return mensagem;
 	}
 
-	public void setTexto(String texto) {
-		this.texto = texto;
+	public void setTexto(String mensagem) {
+		this.mensagem = mensagem;
 	}
 
 	public Date getData() {

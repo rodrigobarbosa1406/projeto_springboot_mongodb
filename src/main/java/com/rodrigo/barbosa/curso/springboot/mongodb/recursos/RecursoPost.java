@@ -1,5 +1,6 @@
 package com.rodrigo.barbosa.curso.springboot.mongodb.recursos;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,6 +33,21 @@ public class RecursoPost {
 	public ResponseEntity<List<Post>> buscarPorTitulo(@RequestParam(value="texto", defaultValue="") String valor){
 		valor = URL.decodeParam(valor);
 		List<Post> posts = servicoPost.buscarPorTitulo(valor);
+		
+		return ResponseEntity.ok().body(posts);
+	}
+	
+	@RequestMapping(value="/buscartudo", method = RequestMethod.GET)
+	public ResponseEntity<List<Post>> buscarTudo(
+			@RequestParam(value="texto", defaultValue="") String valor,
+			@RequestParam(value="dtIni", defaultValue="") String dtIni,
+			@RequestParam(value="dtFim", defaultValue="") String dtFim){
+		valor = URL.decodeParam(valor);
+		
+		Date dtIniC = URL.converteData(dtIni, new Date(0L));
+		Date dtFimC = URL.converteData(dtFim, new Date());
+		
+		List<Post> posts = servicoPost.buscarTudo(valor, dtIniC, dtFimC);
 		
 		return ResponseEntity.ok().body(posts);
 	}

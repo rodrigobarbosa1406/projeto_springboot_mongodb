@@ -1,5 +1,6 @@
 package com.rodrigo.barbosa.curso.springboot.mongodb.servicos;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -23,5 +24,9 @@ public class ServicoPost {
 	
 	public List<Post> buscarPorTitulo(String valor){
 		return repositorioPost.buscarPorTitulo(valor);
+	}
+	
+	public List<Post> buscarTudo(String valor, Date dtIni, Date dtFim){
+		return repositorioPost.buscarTudo(valor, dtIni, (new Date(dtFim.getTime() + (24*60*60*1000))));
 	}
 }
