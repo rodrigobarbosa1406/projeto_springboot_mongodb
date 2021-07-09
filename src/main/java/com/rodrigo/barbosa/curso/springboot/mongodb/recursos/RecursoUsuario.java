@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import com.rodrigo.barbosa.curso.springboot.mongodb.dominio.Post;
 import com.rodrigo.barbosa.curso.springboot.mongodb.dominio.Usuario;
 import com.rodrigo.barbosa.curso.springboot.mongodb.dto.UsuarioDTO;
 import com.rodrigo.barbosa.curso.springboot.mongodb.servicos.ServicoUsuario;
@@ -63,5 +64,12 @@ public class RecursoUsuario {
 		usuario = servicoUsuario.atualizar(usuario);
 		
 		return ResponseEntity.noContent().build();
+	}
+	
+	@RequestMapping(value="/{id}/{posts}", method = RequestMethod.GET)
+	public ResponseEntity<List<Post>> buscarPosts(@PathVariable String id){
+		Usuario usuario = servicoUsuario.buscarPorId(id);
+		
+		return ResponseEntity.ok().body(usuario.getPosts());
 	}
 }
