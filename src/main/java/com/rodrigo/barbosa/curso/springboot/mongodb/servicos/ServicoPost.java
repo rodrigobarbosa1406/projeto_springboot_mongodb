@@ -1,5 +1,6 @@
 package com.rodrigo.barbosa.curso.springboot.mongodb.servicos;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,5 +19,9 @@ public class ServicoPost {
 	public Post buscarPorId(String id) {
 		Optional<Post> post = repositorioPost.findById(id);
 		return post.orElseThrow(() -> new ObjectNotFoundException("Objeto não encontrado"));
+	}
+	
+	public List<Post> buscarPorTitulo(String valor){
+		return repositorioPost.findByTituloContainingIgnoreCase(valor);
 	}
 }
